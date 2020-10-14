@@ -47,8 +47,8 @@
 (package! evil-nerd-commenter :disable t)
 ;; (package! restart-emacs :disable t) ;; core
 ;; (package! highlight-numbers :disable t)
+;; (package! doom-modeline :disable t) ;; Just let it alone
 (package! highlight-quoted :disable t)
-(package! doom-modeline :disable t) ;; seems not useful
 (package! multiple-cursors :disable t)
 (package! emacs-memoize :disable t)
 
