@@ -5,9 +5,6 @@
 ;; the command line, then restart Emacs for the changes to take effect.
 ;; Alternatively, use M-x doom/reload.
 
-(package! fill-column-indicator)
-(package! php-cs-fixer)
-
 ;; Doom's packages are pinned to a specific commit and updated from release to
 ;; release. The `unpin!' macro allows you to unpin single packages...
 ;(unpin! pinned-package)
@@ -19,15 +16,14 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
+(package! fill-column-indicator)
+(package! php-cs-fixer)
 
 ;; To install a package directly from a particular repo, you'll need to specify
 ;; a `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/raxod502/straight.el#the-recipe-format
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
-(package! phpactor
-  :recipe (:host github :repo "emacs-php/phpactor.el"
-           :files ("*.el" "composer.json" "composer.lock" (:exclude "*test.el"))))
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
@@ -35,6 +31,9 @@
 ;(package! this-package
 ;  :recipe (:host github :repo "username/repo"
 ;           :files ("some-file.el" "src/lisp/*.el")))
+(package! phpactor
+  :recipe (:host github :repo "emacs-php/phpactor.el"
+           :files ("*.el" "composer.json" "composer.lock" (:exclude "*test.el"))))
 
 ;; If you'd like to disable a package included with Doom, for whatever reason,
 ;; you can do so here with the `:disable' property:

@@ -6,8 +6,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "wangruichao"
-      user-mail-address "wangruichao2014@xiaochuankeji.cn")
+(setq user-full-name "beewangruichao"
+      user-mail-address "beewangruichao@didiglobal.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -19,7 +19,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 14))
+;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
+;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -38,7 +39,7 @@
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
 ;; - `load!' for loading external *.el files relative to this one
-;; - `use-package' for configuring packages
+;; - `use-package!' for configuring packages
 ;; - `after!' for running code after a package has loaded
 ;; - `add-load-path!' for adding directories to the `load-path', relative to
 ;;   this file. Emacs searches the `load-path' when you load packages with
@@ -53,12 +54,13 @@
 ;; they are implemented.
 
 ;; Least keymaps.
-(map! :nv "C-h" 'evil-window-left
-      :nv "C-j" 'evil-window-down
-      :nv "C-k" 'evil-window-up
-      :nv "C-l" 'evil-window-right
-      :n  "C-i" 'better-jumper-jump-forward
-      :n  "ZQ"  '+workspace/close-window-or-workspace
+(map! :nv "C-h"   'evil-window-left
+      :nv "C-j"   'evil-window-down
+      :nv "C-k"   'evil-window-up
+      :nv "C-l"   'evil-window-right
+      :n  "C-i"   'better-jumper-jump-forward
+      :n  "ZQ"    '+workspace/close-window-or-workspace
+      :n  "C-w -" 'evil-window-decrease-height
 
       :leader
       :n "w/"    'evil-window-vsplit
@@ -87,9 +89,7 @@
 ;; (setq fci-rule-color "blue")
 (add-hook! 'prog-mode-hook 'turn-on-fci-mode)
 
-;; VTerm
-(after! vterm (map! :map vterm-mode-map "C-c C-v" 'vterm-yank))
-
+;; Dashboard:
 (defun doom-dashboard-widget-banner ()
   ;; Replace it to get my own dashboard!
   (let ((point (point)))
@@ -140,3 +140,7 @@
                                  )
         org-log-done 'time)
   )
+
+;; PlantUML:
+;; Enable plantuml-mode for PlantUML files
+(add-to-list 'auto-mode-alist '("\\.puml\\'" . plantuml-mode))
