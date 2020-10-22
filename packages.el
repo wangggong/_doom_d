@@ -16,7 +16,6 @@
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
-(package! fill-column-indicator)
 (package! php-cs-fixer)
 
 ;; To install a package directly from a particular repo, you'll need to specify
