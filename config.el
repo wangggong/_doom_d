@@ -54,13 +54,14 @@
 ;; they are implemented.
 
 ;; Least keymaps.
-(map! :nv "C-h"   'evil-window-left
-      :nv "C-j"   'evil-window-down
-      :nv "C-k"   'evil-window-up
-      :nv "C-l"   'evil-window-right
-      :n  "C-i"   'better-jumper-jump-forward
+(map! :n  "C-i"   'better-jumper-jump-forward
       :n  "ZQ"    '+workspace/close-window-or-workspace
       :n  "C-w -" 'evil-window-decrease-height
+      ;; @deprecated
+      ;;:nv "C-h"   'evil-window-left
+      ;;:nv "C-j"   'evil-window-down
+      ;;:nv "C-k"   'evil-window-up
+      ;;:nv "C-l"   'evil-window-right
 
       :leader
       :n "w/"    'evil-window-vsplit
