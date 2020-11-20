@@ -121,7 +121,20 @@
 
 ;; A transparent Ema!
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
-(set-frame-parameter (selected-frame) 'alpha '(75 50))
+(set-frame-parameter (selected-frame) 'alpha '(85 64))
+
+;; Format:
+;;
+;; Cancel format for PHP.
+(setq! +format-on-save-enabled-modes
+  '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+        sql-mode         ; sqlformat is currently broken
+        tex-mode         ; latexindent is broken
+        latex-mode
+
+        ;; My own configuration:
+        php-mode)        ; The best language doesn't need format!
+ )
 
 ;; Org mode:
 (after! org
