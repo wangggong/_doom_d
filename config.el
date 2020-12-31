@@ -57,6 +57,8 @@
 (map! :n  "C-i"   'better-jumper-jump-forward
       :n  "ZQ"    '+workspace/close-window-or-workspace
       :n  "C-w -" 'evil-window-decrease-height
+      :nv "C-="   'lsp-format-region
+      :nv "C--"   'align-regexp
       ;; @deprecated
       ;;:nv "C-h"   'evil-window-left
       ;;:nv "C-j"   'evil-window-down
