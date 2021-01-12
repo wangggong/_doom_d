@@ -1,3 +1,6 @@
 # Org files are banned:
 *.org
 
+# PlantUML JAR are banned:
+plantuml.jar
+

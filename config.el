@@ -19,13 +19,14 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "Source Code Variable" :size 14 :weight 'semi-light)
-      doom-variable-pitch-font (font-spec :family "Courier" :size 14))
+(setq doom-font (font-spec :family "Source Code Variable" :size 14)
+      doom-variable-pitch-font (font-spec :family "Source Code Variable" :size 14))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'wheatgrass) ;; Green!
+;(setq doom-theme 'doom-manegarm)
+(setq doom-theme 'doom-palenight)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -94,16 +95,16 @@
             (insert (propertize (+doom-dashboard--center +doom-dashboard--width line)
                                 'face 'doom-dashboard-banner) " ")
             (insert "\n"))
-          '("     #######    ##  ##     ##                   ##        #######                 "
-            "     #######    ##  ##     ##                   ##        #######                 "
-            "    ##    ##       ##   # ##   #  #####       ## #       ##      ## ## ##   ##### "
-            "   ##    ##   ##  ##  #  ##  #  ##   ##       ##        ####    ### ##  # ##   ## "
-            "  #######    ##  ####   ####   ##   ##     ## ##       ##      ##  ##  # ##   ##  "
-            "  #######    ##  ####   ####   ##   ##     ## ##       ##      ##  ##  # ##   ##  "
-            " ##    ##   ##  ##  #  ##  #  ##   ##    ##   ## #    ##      ##  ##  # ##   ##   "
-            "##     ## #### ##   # ##   #  #### #    ##   ###     ####### ##      #  #### #    "
-            "                                        ####  ##                                  "
-            "                                        ####  ##                                  "))
+           '("  ,gggggggggggg,        ,gggggggggggg,          "
+             " dP\"\"\"88\"\"\"\"\"\"Y8b,     dP\"\"\"88\"\"\"\"\"\"Y8b,        "
+             " Yb,  88       `8b,    Yb,  88       `8b,       "
+             "  `\"  88        `8b  gg `\"  88        `8b  gg   "
+             "      88         Y8  \"\"     88         Y8  \"\"   "
+             "      88         d8  gg     88         d8  gg   "
+             "      88        ,8P  88     88        ,8P  88   "
+             "      88       ,8P'  88     88       ,8P'  88   "
+             "      88______,dP' _,88,_   88______,dP' _,88,_ "
+             "     888888888P\"   8P\"\"Y8  888888888P\"   8P\"\"Y8 "))
     (when (and (display-graphic-p)
                (stringp fancy-splash-image)
                (file-readable-p fancy-splash-image))
@@ -137,6 +138,9 @@
         ;; My own configuration:
         php-mode)        ; The best language doesn't need format!
  )
+
+;; LSP:
+(setq! lsp-file-watch-threshold 10000)
 
 ;; Org mode:
 (after! org
