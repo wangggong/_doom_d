@@ -67,6 +67,7 @@
       ;;:nv "C-l"   'evil-window-right
 
       :leader
+      :n "clm"   'lsp-ui-imenu
       :n "w/"    'evil-window-vsplit
       :n "w-"    'evil-window-split
       :n "wT"    '+workspace/new
