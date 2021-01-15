@@ -67,7 +67,6 @@
       ;;:nv "C-l"   'evil-window-right
 
       :leader
-      :n "clm"   'lsp-ui-imenu
       :n "w/"    'evil-window-vsplit
       :n "w-"    'evil-window-split
       :n "wT"    '+workspace/new
@@ -75,6 +74,7 @@
       :n "'"     '+vterm/toggle
       :n "/"     '+default/search-project-for-symbol-at-point
       :n "="     '+treemacs/toggle
+      :n "cm"   'lsp-ui-imenu
 
       :n "0" '+workspace/switch-to-final
       :n "1" '+workspace/switch-to-0
