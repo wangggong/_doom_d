@@ -73,7 +73,7 @@
       :n "'"     '+vterm/toggle
       :n "/"     '+default/search-project-for-symbol-at-point
       :n "="     '+treemacs/toggle
-      :n "cm"   'lsp-ui-imenu
+      :n "cm"    'lsp-ui-imenu
 
       :n "0" '+workspace/switch-to-final
       :n "1" '+workspace/switch-to-0
@@ -141,6 +141,14 @@
 
 ;; LSP:
 (setq! lsp-file-watch-threshold 10000)
+
+;; Magit:
+(setq! magit-blame--style
+       '(margin
+         (margin-format " %s%f" " %C %a" " %H")
+         (margin-width . 42)
+         (margin-face . magit-blame-margin)
+         (margin-body-face magit-blame-dimmed)))
 
 ;; Org mode:
 (after! org
