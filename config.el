@@ -68,7 +68,7 @@
       :leader
       :n "w/"    'evil-window-vsplit
       :n "w-"    'evil-window-split
-      :n "wT"    '+workspace/new
+      :n "wt"    '+workspace/new
       :n "<SPC>" 'counsel-M-x
       :n "'"     '+vterm/toggle
       :n "/"     '+default/search-project-for-symbol-at-point
@@ -149,6 +149,9 @@
          (margin-width . 42)
          (margin-face . magit-blame-margin)
          (margin-body-face magit-blame-dimmed)))
+
+;; Mouse:
+(xterm-mouse-mode t)
 
 ;; Org mode:
 (after! org
