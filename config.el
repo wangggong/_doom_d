@@ -152,6 +152,11 @@
 
 ;; Mouse:
 (xterm-mouse-mode t)
+; 鼠标滚轮, 默认的滚动太快, 这里改为3行
+(defun up-slightly () (interactive) (scroll-up 3))
+(defun down-slightly () (interactive) (scroll-down 3))
+(global-set-key [mouse-4] 'down-slightly)
+(global-set-key [mouse-5] 'up-slightly)
 
 ;; Org mode:
 (after! org
