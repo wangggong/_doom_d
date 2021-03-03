@@ -140,15 +140,23 @@
  )
 
 ;; LSP:
-(setq! lsp-file-watch-threshold 10000)
+(setq! lsp-enable-file-watchers   nil)
+(setq! lsp-ui-sideline-show-hover t)
 
 ;; Magit:
-(setq! magit-blame--style
-       '(margin
-         (margin-format " %s%f" " %C %a" " %H")
-         (margin-width . 42)
-         (margin-face . magit-blame-margin)
-         (margin-body-face magit-blame-dimmed)))
+(setq! magit-blame-styles
+  '((margin
+     (margin-format    . (" %s%f" " %C %a" " %H"))
+     (margin-width     . 42)
+     (margin-face      . magit-blame-margin)
+     (margin-body-face . (magit-blame-dimmed)))
+    (headings
+     (heading-format   . "%-20a %C %s\n"))
+    (highlight
+     (highlight-face   . magit-blame-highlight))
+    (lines
+     (show-lines       . t)
+     (show-message     . t))))
 
 ;; Mouse:
 (xterm-mouse-mode t)
