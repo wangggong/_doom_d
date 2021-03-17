@@ -56,6 +56,8 @@
 ;; Least keymaps.
 (map! :n  "C-i"   'better-jumper-jump-forward
       :n  "ZQ"    '+workspace/close-window-or-workspace
+      :n  "zh"    'evil-scroll-left
+      :n  "zl"    'evil-scroll-right
       :n  "C-w -" 'evil-window-decrease-height
       :nv "C-="   'lsp-format-region
       :nv "C--"   'align-regexp
