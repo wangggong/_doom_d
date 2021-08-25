@@ -44,13 +44,9 @@
 ;;
 ;; TODO: fill the list!
 (package! evil-nerd-commenter :disable t)
-;; (package! restart-emacs :disable t) ;; core
-;; (package! highlight-numbers :disable t)
-;; (package! doom-modeline :disable t) ;; Just let it alone
-(package! highlight-quoted :disable t)
 (package! multiple-cursors :disable t)
 (package! emacs-memoize :disable t)
-
+(package! acme-theme)
 
 ;; You can override the recipe of a built in package without having to specify
 ;; all the properties for `:recipe'. These will inherit the rest of its recipe

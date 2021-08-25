@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-palenight) ;; Green!
+(load-theme 'acme t)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -89,6 +89,27 @@
       :n "9" '+workspace/switch-to-8
       )
 
+(setq initial-scratch-message ";; Beautiful is better than ugly.
+;; Explicit is better than implicit.
+;; Simple is better than complex.
+;; Complex is better than complicated.
+;; Flat is better than nested.
+;; Sparse is better than dense.
+;; Readability counts.
+;; Special cases aren't special enough to break the rules.
+;; Although practicality beats purity.
+;; Errors should never pass silently.
+;; Unless explicitly silenced.
+;; In the face of ambiguity, refuse the temptation to guess.
+;; There should be one-- and preferably only one --obvious way to do it.
+;; Although that way may not be obvious at first unless you're Dutch.
+;; Now is better than never.
+;; Although never is often better than *right* now.
+;; If the implementation is hard to explain, it's a bad idea.
+;; If the implementation is easy to explain, it may be a good idea.
+;; Namespaces are one honking great idea -- let's do more of those!
+")
+
 ;; Dashboard:
 (defun doom-dashboard-widget-banner ()
   ;; Replace it to get my own dashboard!
@@ -128,6 +149,10 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 (set-frame-parameter (selected-frame) 'alpha '(85 64))
 
+;; Company
+;; Don't popup company, except I call.
+(setq! company-idle-delay nil)
+
 ;; Format:
 ;;
 ;; Cancel format for PHP.
@@ -148,7 +173,7 @@
 ;; Magit:
 (setq! magit-blame-styles
   '((margin
-     (margin-format    . (" %s%f" " %C %a" " %H"))
+     (margin-format    . ("%a %s%f" " %C" " %H"))
      (margin-width     . 42)
      (margin-face      . magit-blame-margin)
      (margin-body-face . (magit-blame-dimmed)))
@@ -162,11 +187,6 @@
 
 ;; Mouse:
 (xterm-mouse-mode t)
-; 鼠标滚轮, 默认的滚动太快, 这里改为3行
-(defun up-slightly () (interactive) (scroll-up 3))
-(defun down-slightly () (interactive) (scroll-down 3))
-(global-set-key [mouse-4] 'down-slightly)
-(global-set-key [mouse-5] 'up-slightly)
 
 ;; Org mode:
 (after! org
