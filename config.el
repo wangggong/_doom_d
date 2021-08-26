@@ -66,6 +66,8 @@
       ;;:nv "C-j"   'evil-window-down
       ;;:nv "C-k"   'evil-window-up
       ;;:nv "C-l"   'evil-window-right
+      :i "C-n" 'company-select-next
+      :i "C-p" 'company-select-previous
 
       :leader
       :n "w/"    'evil-window-vsplit
