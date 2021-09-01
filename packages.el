@@ -46,6 +46,7 @@
 (package! evil-nerd-commenter :disable t)
 (package! multiple-cursors :disable t)
 (package! emacs-memoize :disable t)
+(package! doom-snippets :disable t)
 (package! acme-theme)
 
 ;; You can override the recipe of a built in package without having to specify

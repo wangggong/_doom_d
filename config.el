@@ -60,14 +60,10 @@
       :n  "zl"    'evil-scroll-right
       :n  "C-w -" 'evil-window-decrease-height
       :nv "C-="   'lsp-format-region
-      :nv "C--"   'align-regexp
-      ;; @deprecated
-      ;;:nv "C-h"   'evil-window-left
-      ;;:nv "C-j"   'evil-window-down
-      ;;:nv "C-k"   'evil-window-up
-      ;;:nv "C-l"   'evil-window-right
-      :i "C-n" 'company-select-next
-      :i "C-p" 'company-select-previous
+      :nv "RET"   'er/expand-region
+      ;; :nv "C--"   'align-regexp ;; invalid?
+      :i "C-n" 'company-complete-common
+      :i "C-p" 'company-select-previous-or-abort
 
       :leader
       :n "w/"    'evil-window-vsplit
