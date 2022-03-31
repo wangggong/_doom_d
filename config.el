@@ -55,10 +55,11 @@
 
 ;; Least keymaps.
 (map! :n  "C-i"   'better-jumper-jump-forward
-      :n  "ZQ"    '+workspace/close-window-or-workspace
       :n  "zh"    'evil-scroll-left
       :n  "zl"    'evil-scroll-right
       :n  "C-w -" 'evil-window-decrease-height
+      :n  "[g"    'flycheck-previous-error
+      :n  "]g"    'flycheck-next-error
       :nv "C-="   'lsp-format-region
       :nv "RET"   'er/expand-region
       ;; :nv "C--"   'align-regexp ;; invalid?
@@ -68,45 +69,47 @@
       :leader
       :n "w/"    'evil-window-vsplit
       :n "w-"    'evil-window-split
-      :n "wt"    '+workspace/new
-      :n "<SPC>" 'counsel-M-x
+      :n "<SPC>" 'execute-extended-command
       :n "'"     '+vterm/toggle
       :n "/"     '+default/search-project-for-symbol-at-point
       :n "="     '+treemacs/toggle
       :n "cm"    'lsp-ui-imenu
-
-      :n "0" '+workspace/switch-to-final
-      :n "1" '+workspace/switch-to-0
-      :n "2" '+workspace/switch-to-1
-      :n "3" '+workspace/switch-to-2
-      :n "4" '+workspace/switch-to-3
-      :n "5" '+workspace/switch-to-4
-      :n "6" '+workspace/switch-to-5
-      :n "7" '+workspace/switch-to-6
-      :n "8" '+workspace/switch-to-7
-      :n "9" '+workspace/switch-to-8
       )
 
-(setq initial-scratch-message ";; Beautiful is better than ugly.
-;; Explicit is better than implicit.
-;; Simple is better than complex.
-;; Complex is better than complicated.
-;; Flat is better than nested.
-;; Sparse is better than dense.
-;; Readability counts.
-;; Special cases aren't special enough to break the rules.
-;; Although practicality beats purity.
-;; Errors should never pass silently.
-;; Unless explicitly silenced.
-;; In the face of ambiguity, refuse the temptation to guess.
-;; There should be one-- and preferably only one --obvious way to do it.
-;; Although that way may not be obvious at first unless you're Dutch.
-;; Now is better than never.
-;; Although never is often better than *right* now.
-;; If the implementation is hard to explain, it's a bad idea.
-;; If the implementation is easy to explain, it may be a good idea.
-;; Namespaces are one honking great idea -- let's do more of those!
-")
+(when (featurep! :ui workspace)
+  (map! :n  "ZQ"    '+workspace/close-window-or-workspace
+
+        :leader
+        :n "wt"    '+workspace/new
+
+        :n "0" '+workspace/switch-to-final
+        :n "1" '+workspace/switch-to-0
+        :n "2" '+workspace/switch-to-1
+        :n "3" '+workspace/switch-to-2
+        :n "4" '+workspace/switch-to-3
+        :n "5" '+workspace/switch-to-4
+        :n "6" '+workspace/switch-to-5
+        :n "7" '+workspace/switch-to-6
+        :n "8" '+workspace/switch-to-7
+        :n "9" '+workspace/switch-to-8))
+
+;; A transparent Ema!
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+(set-frame-parameter (selected-frame) 'alpha '(90 75))
+
+;; Company
+;; Don't popup company, except I call.
+(setq! company-idle-delay 0
+       company-selection-wrap-around t
+       lsp-completion-enable t)
+(after! prog-mode
+  (global-company-mode 1)
+  (set-company-backend! 'prog-mode
+    'company-dabbrev
+    'company-keywords
+    'company-yasnippet
+    'company-files
+    'company-capf))
 
 ;; Dashboard:
 (defun doom-dashboard-widget-banner ()
@@ -143,61 +146,83 @@
       (insert (make-string (or (cdr +doom-dashboard-banner-padding) 0)
                            ?\n)))))
 
-;; A transparent Ema!
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-(set-frame-parameter (selected-frame) 'alpha '(85 64))
-
-;; Company
-;; Don't popup company, except I call.
-(setq! company-idle-delay nil)
+(setq! initial-scratch-message ";; Simple, Poetic, Pithy
+;; Don’t communicate by sharing memory, share memory by communicating.
+;; Concurrency is not parallelism.
+;; Channels orchestrate; mutexes serialize.
+;; The bigger the interface, the weaker the abstraction.
+;; Make the zero value useful.
+;; interface{} says nothing.
+;; Gofmt’s style is no one’s favorite, yet gofmt is everyone’s favorite.
+;; A little copying is better than a little dependency.
+;; Syscall must always be guarded with build tags.
+;; Cgo must always be guarded with build tags.
+;; Cgo is not Go.
+;; With the unsafe package there are no guarantees.
+;; Clear is better than clever.
+;; Reflection is never clear.
+;; Errors are values.
+;; Don’t just check errors, handle them gracefully.
+;; Design the architecture, name the components, document the details.
+;; Documentation is for users.
+;; Don’t panic.
+")
 
 ;; Format:
 ;;
 ;; Cancel format for PHP.
 (setq! +format-on-save-enabled-modes
-  '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
-        sql-mode         ; sqlformat is currently broken
-        tex-mode         ; latexindent is broken
-        latex-mode
+       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+             sql-mode         ; sqlformat is currently broken
+             tex-mode         ; latexindent is broken
+             latex-mode
 
-        ;; My own configuration:
-        php-mode)        ; The best language doesn't need format!
- )
+             ;; My own configuration:
+             php-mode)        ; The best language doesn't need format!
+       )
+
+;; LeetCode:
+(setq! leetcode-directory "~/Code/src/git.xiaojukeji.com/beewangruichao/docs/leetcode"
+       leetcode-prefer-language "golang"
+       leetcode-save-solutions t)
 
 ;; LSP:
-(setq! lsp-enable-file-watchers   nil)
-(setq! lsp-ui-sideline-show-hover t)
+(setq! lsp-enable-file-watchers   nil
+       lsp-ui-sideline-show-hover t)
 
 ;; Magit:
 (setq! magit-blame-styles
-  '((margin
-     (margin-format    . ("%a %s%f" " %C" " %H"))
-     (margin-width     . 42)
-     (margin-face      . magit-blame-margin)
-     (margin-body-face . (magit-blame-dimmed)))
-    (headings
-     (heading-format   . "%-20a %C %s\n"))
-    (highlight
-     (highlight-face   . magit-blame-highlight))
-    (lines
-     (show-lines       . t)
-     (show-message     . t))))
+       '((margin
+          (margin-format    . ("%a %s%f" " %C" " %H"))
+          (margin-width     . 42)
+          (margin-face      . magit-blame-margin)
+          (margin-body-face . (magit-blame-dimmed)))
+         (headings
+          (heading-format   . "%-20a %C %s\n"))
+         (highlight
+          (highlight-face   . magit-blame-highlight))
+         (lines
+          (show-lines       . t)
+          (show-message     . t))))
 
 ;; Mouse:
-(xterm-mouse-mode t)
+(xterm-mouse-mode -1)
+
+;; Modeline:
+(when (featurep! :ui modeline)
+  (setq! doom-modeline-height 0
+         doom-modeline-icon nil))
 
 ;; Org mode:
 (after! org
-  (setq org-todo-keywords '((sequence "TODO(t)" "PLANING(p)" "INPROGRESS(i)" "BLOCK(b)" "|" "DONE(d)" "CANCELLED(c)"))
-        org-todo-keyword-faces '(("TODO" :foreground "#7c7c75" :weight normal: underline t)
-                                 ("PLANING" :foreground "#b0c4de" :weight normal: underline t)
-                                 ("INPROGRESS" :foreground "#0098dd" :weight normal: underline t)
-                                 ("BLOCK" :foreground "#9f7efe" :weight normal: underline t)
-                                 ("DONE" :foreground "#50a14f" :weight normal: underline t)
-                                 ("CANCELLED" :foreground "#ff6480" :weight normal: underline t)
-                                 )
-        org-log-done 'time)
-  )
+  (setq! org-todo-keywords '((sequence "TODO(t)" "PLANING(p)" "INPROGRESS(i)" "BLOCK(b)" "|" "DONE(d)" "CANCELLED(c)"))
+         org-todo-keyword-faces '(("TODO" :foreground "#7c7c75" :weight normal: underline t)
+                                  ("PLANING" :foreground "#b0c4de" :weight normal: underline t)
+                                  ("INPROGRESS" :foreground "#0098dd" :weight normal: underline t)
+                                  ("BLOCK" :foreground "#9f7efe" :weight normal: underline t)
+                                  ("DONE" :foreground "#50a14f" :weight normal: underline t)
+                                  ("CANCELLED" :foreground "#ff6480" :weight normal: underline t))
+         org-log-done 'time))
 
 ;; PlantUML:
 ;; Enable plantuml-mode for PlantUML files
